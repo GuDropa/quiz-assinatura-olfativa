@@ -86,7 +86,7 @@ export default function QuizEngine() {
       >
         <div className="flex items-center gap-3 cursor-pointer min-w-0">
           <div className="shrink-0">
-            <img src="/public/assets/logo_dea_noslogan.PNG" alt="D&A Decants" className="w-10 h-10 sm:w-12 sm:h-12" />
+            <img src="/assets/logo_dea_noslogan.PNG" alt="D&A Decants" className="w-10 h-10 sm:w-12 sm:h-12" />
           </div>
           <div className="hidden sm:block min-w-0">
             <span className="font-serif font-bold text-graphite text-lg">D&A Decants</span>
