@@ -11,7 +11,7 @@ export default function GenderSelect({ onSelect }) {
       className="text-center max-w-2xl mx-auto"
     >
       <div className="mb-4">
-        <span className="inline-block text-gold text-sm font-medium tracking-[0.3em] uppercase">
+        <span className="inline-block text-gold text-lg font-medium tracking-[0.3em] uppercase">
           D&A Decants
         </span>
       </div>
@@ -30,7 +30,7 @@ export default function GenderSelect({ onSelect }) {
         Para começar, qual linha você quer explorar?
       </p>
 
-      <div className="flex flex-col sm:flex-row gap-5 justify-center">
+      <div className="flex flex-row gap-5 justify-center">
         <motion.button
           onClick={() => onSelect("masculino")}
           className="group relative flex-1 max-w-xs mx-auto sm:mx-0 bg-graphite text-white rounded-2xl p-8 cursor-pointer overflow-hidden"

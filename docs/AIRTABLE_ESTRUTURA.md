@@ -19,7 +19,7 @@ Use esta especificação para criar a base no Airtable. Cada campo está com nom
 | `email` | Email | Email | Obrigatório. Primary field = não (use `created_at` ou um Single line text como ID se quiser). |
 | `telefone` | Telefone | Phone number | Formato livre (ex.: +55 11 99999-9999). Pode ser opcional. |
 | `genero` | Linha | Single select | Opções: `Masculino`, `Feminino`. |
-| `match_id` | Match (ID) | Single line text | ID do perfume do match perfeito (ex.: `m03`, `f01`). |
+| `match_id` | Match (ID) | Single line text | ID do perfume (slug: ex. `m-lattafa-eqaab`, `f-dior-jadore`). |
 | `match_nome` | Match — Perfume | Single line text | Nome do perfume (ex.: Stronger With You Intensely). |
 | `match_marca` | Match — Marca | Single line text | Ex.: Emporio Armani. |
 | `outras_opcoes` | Outras opções | Long text | JSON string com array dos outros 2 perfumes. Ex.: `[{"id":"m01","nome":"Sauvage EDP","marca":"Dior"},{"id":"m02",...}]` |
@@ -61,7 +61,7 @@ Quando você integrar o front com um backend que grava no Airtable, o payload de
   "email": "cliente@email.com",
   "telefone": "+5511999999999",
   "genero": "masculino",
-  "match_id": "m03",
+  "match_id": "m-emporio-armani-stronger-with-you-intensely",
   "match_nome": "Stronger With You Intensely",
   "match_marca": "Emporio Armani",
   "outras_opcoes": "[{\"id\":\"m01\",\"nome\":\"Sauvage EDP\",\"marca\":\"Dior\"},{\"id\":\"m02\",\"nome\":\"Bleu de Chanel\",\"marca\":\"Chanel\"}]",

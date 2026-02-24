@@ -11,7 +11,7 @@ export const perfumesMasculinos = [
     id: "m01",
     nome: "Sauvage EDP",
     marca: "Dior",
-    imagem: "https://images.unsplash.com/photo-1594035910387-fea081d42330?w=400&q=80",
+    imagem: "/src/assets/perfumes_masculinos/sauvage_edp.png",
     atributos: { doce: 3, fresco: 8, intenso: 6, noturno: 4, floral: 2, amadeirado: 7, oriental: 3, citrico: 7, sensual: 5, elegante: 7 },
     descricao: "Selvagem e magnético, uma explosão fresca com fundo amadeirado."
   },
@@ -19,7 +19,7 @@ export const perfumesMasculinos = [
     id: "m02",
     nome: "Bleu de Chanel",
     marca: "Chanel",
-    imagem: "https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=400&q=80",
+    imagem: "/src/assets/perfumes_masculinos/bleu_de_chanel.webp",
     atributos: { doce: 3, fresco: 7, intenso: 5, noturno: 4, floral: 2, amadeirado: 7, oriental: 3, citrico: 6, sensual: 5, elegante: 9 },
     descricao: "Elegância atemporal, versátil para qualquer ocasião."
   },
@@ -27,7 +27,7 @@ export const perfumesMasculinos = [
     id: "m03",
     nome: "Stronger With You Intensely",
     marca: "Emporio Armani",
-    imagem: "https://images.unsplash.com/photo-1590736969955-71cc94901144?w=400&q=80",
+    imagem: "/src/assets/perfumes_masculinos/stronger_with_you_intensely.jpg",
     atributos: { doce: 9, fresco: 2, intenso: 8, noturno: 8, floral: 1, amadeirado: 5, oriental: 7, citrico: 1, sensual: 9, elegante: 6 },
     descricao: "Abraço quente e acolhedor, impossível de esquecer."
   },
@@ -35,7 +35,7 @@ export const perfumesMasculinos = [
     id: "m04",
     nome: "Le Male Elixir",
     marca: "Jean Paul Gaultier",
-    imagem: "https://images.unsplash.com/photo-1587017539504-67cfbddac569?w=400&q=80",
+    imagem: "/src/assets/perfumes_masculinos/le_male_elixir.webp",
     atributos: { doce: 7, fresco: 3, intenso: 9, noturno: 9, floral: 2, amadeirado: 6, oriental: 8, citrico: 2, sensual: 9, elegante: 7 },
     descricao: "Poder e sedução concentrados em um elixir irresistível."
   },
@@ -43,7 +43,7 @@ export const perfumesMasculinos = [
     id: "m05",
     nome: "Eros EDP",
     marca: "Versace",
-    imagem: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=400&q=80",
+    imagem: "/src/assets/perfumes_masculinos/eros_edp.png",
     atributos: { doce: 7, fresco: 5, intenso: 7, noturno: 6, floral: 1, amadeirado: 5, oriental: 6, citrico: 4, sensual: 8, elegante: 6 },
     descricao: "Deus grego em forma de perfume — poderoso e sedutor."
   },
@@ -51,7 +51,7 @@ export const perfumesMasculinos = [
     id: "m06",
     nome: "1 Million Parfum",
     marca: "Paco Rabanne",
-    imagem: "https://images.unsplash.com/photo-1541643600914-78b084683601?w=400&q=80",
+    imagem: "/src/assets/perfumes_masculinos/1_million_parfum.png",
     atributos: { doce: 8, fresco: 3, intenso: 8, noturno: 7, floral: 1, amadeirado: 5, oriental: 7, citrico: 2, sensual: 8, elegante: 7 },
     descricao: "Luxuoso e ousado, para quem quer ser notado."
   },
@@ -59,7 +59,7 @@ export const perfumesMasculinos = [
     id: "m07",
     nome: "Acqua di Giò Profondo",
     marca: "Giorgio Armani",
-    imagem: "https://images.unsplash.com/photo-1557170334-a9632e77c6e4?w=400&q=80",
+    imagem: "/src/assets/perfumes_masculinos/acqua_di_gio_profondo.webp",
     atributos: { doce: 2, fresco: 9, intenso: 4, noturno: 2, floral: 2, amadeirado: 5, oriental: 3, citrico: 8, sensual: 4, elegante: 7 },
     descricao: "Profundidade oceânica, brisa marítima sofisticada."
   },
@@ -67,7 +67,7 @@ export const perfumesMasculinos = [
     id: "m08",
     nome: "MYSLF",
     marca: "Yves Saint Laurent",
-    imagem: "https://images.unsplash.com/photo-1594035910387-fea081d42330?w=400&q=80",
+    imagem: "/src/assets/perfumes_masculinos/myslf.png",
     atributos: { doce: 5, fresco: 6, intenso: 5, noturno: 4, floral: 6, amadeirado: 5, oriental: 4, citrico: 5, sensual: 5, elegante: 8 },
     descricao: "Moderno e floral masculino, quebrando barreiras."
   },
@@ -75,7 +75,7 @@ export const perfumesMasculinos = [
     id: "m09",
     nome: "Gentleman Réserve Privée",
     marca: "Givenchy",
-    imagem: "https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=400&q=80",
+    imagem: "/src/assets/perfumes_masculinos/gentleman_reserve_privee.jpg",
     atributos: { doce: 6, fresco: 3, intenso: 6, noturno: 7, floral: 3, amadeirado: 8, oriental: 6, citrico: 2, sensual: 7, elegante: 9 },
     descricao: "O verdadeiro cavalheiro — refinado, quente e sofisticado."
   },
@@ -83,7 +83,7 @@ export const perfumesMasculinos = [
     id: "m10",
     nome: "The Most Wanted Parfum",
     marca: "Azzaro",
-    imagem: "https://images.unsplash.com/photo-1590736969955-71cc94901144?w=400&q=80",
+    imagem: "/src/assets/perfumes_masculinos/the_most_wanted_parfum.webp",
     atributos: { doce: 8, fresco: 3, intenso: 8, noturno: 8, floral: 1, amadeirado: 5, oriental: 7, citrico: 2, sensual: 9, elegante: 6 },
     descricao: "O mais desejado — doce, intenso e irresistível."
   },
@@ -91,7 +91,7 @@ export const perfumesMasculinos = [
     id: "m11",
     nome: "Bad Boy Cobalt",
     marca: "Carolina Herrera",
-    imagem: "https://images.unsplash.com/photo-1587017539504-67cfbddac569?w=400&q=80",
+    imagem: "/src/assets/perfumes_masculinos/bad_boy_cobalt.webp",
     atributos: { doce: 4, fresco: 7, intenso: 5, noturno: 4, floral: 2, amadeirado: 6, oriental: 4, citrico: 6, sensual: 5, elegante: 7 },
     descricao: "Rebelde com classe, frescor eletrizante."
   },
@@ -99,7 +99,7 @@ export const perfumesMasculinos = [
     id: "m12",
     nome: "Armani Code",
     marca: "Giorgio Armani",
-    imagem: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=400&q=80",
+    imagem: "/src/assets/perfumes_masculinos/armani_code.webp",
     atributos: { doce: 6, fresco: 3, intenso: 6, noturno: 7, floral: 3, amadeirado: 6, oriental: 7, citrico: 3, sensual: 8, elegante: 8 },
     descricao: "Código secreto da sedução — sofisticado e misterioso."
   },
@@ -107,7 +107,7 @@ export const perfumesMasculinos = [
     id: "m13",
     nome: "212 VIP Black",
     marca: "Carolina Herrera",
-    imagem: "https://images.unsplash.com/photo-1541643600914-78b084683601?w=400&q=80",
+    imagem: "/src/assets/perfumes_masculinos/212_vip_black.webp",
     atributos: { doce: 7, fresco: 4, intenso: 7, noturno: 7, floral: 1, amadeirado: 4, oriental: 6, citrico: 3, sensual: 7, elegante: 6 },
     descricao: "Noite VIP — fumado, doce e magnético."
   },
@@ -115,7 +115,7 @@ export const perfumesMasculinos = [
     id: "m14",
     nome: "La Nuit de L'Homme",
     marca: "Yves Saint Laurent",
-    imagem: "https://images.unsplash.com/photo-1557170334-a9632e77c6e4?w=400&q=80",
+    imagem: "/src/assets/perfumes_masculinos/la_nuit_de_lhomme.jpg",
     atributos: { doce: 6, fresco: 3, intenso: 5, noturno: 9, floral: 3, amadeirado: 5, oriental: 6, citrico: 3, sensual: 8, elegante: 8 },
     descricao: "A essência da noite parisiense — elegante e sedutor."
   },
@@ -123,7 +123,7 @@ export const perfumesMasculinos = [
     id: "m15",
     nome: "Invictus Victory",
     marca: "Paco Rabanne",
-    imagem: "https://images.unsplash.com/photo-1594035910387-fea081d42330?w=400&q=80",
+    imagem: "/src/assets/perfumes_masculinos/invictus_victory.webp",
     atributos: { doce: 7, fresco: 5, intenso: 7, noturno: 5, floral: 2, amadeirado: 5, oriental: 5, citrico: 4, sensual: 7, elegante: 6 },
     descricao: "Vitória garantida — aromático e poderoso."
   },
@@ -131,7 +131,7 @@ export const perfumesMasculinos = [
     id: "m16",
     nome: "Boss Bottled Infinite",
     marca: "Hugo Boss",
-    imagem: "https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=400&q=80",
+    imagem: "/src/assets/perfumes_masculinos/boss_bottled_infinite.webp",
     atributos: { doce: 4, fresco: 6, intenso: 5, noturno: 4, floral: 2, amadeirado: 8, oriental: 4, citrico: 5, sensual: 5, elegante: 8 },
     descricao: "Infinitamente elegante — amadeirado e refinado."
   },
@@ -139,7 +139,7 @@ export const perfumesMasculinos = [
     id: "m17",
     nome: "Man in Black",
     marca: "Bvlgari",
-    imagem: "https://images.unsplash.com/photo-1590736969955-71cc94901144?w=400&q=80",
+    imagem: "/src/assets/perfumes_masculinos/man_in_black.avif",
     atributos: { doce: 5, fresco: 2, intenso: 7, noturno: 8, floral: 2, amadeirado: 7, oriental: 8, citrico: 2, sensual: 8, elegante: 8 },
     descricao: "Mistério em preto — especiarias e couro sofisticado."
   },
@@ -147,7 +147,7 @@ export const perfumesMasculinos = [
     id: "m18",
     nome: "Lattafa Asad",
     marca: "Lattafa",
-    imagem: "https://images.unsplash.com/photo-1587017539504-67cfbddac569?w=400&q=80",
+    imagem: "/src/assets/perfumes_masculinos/lattafa_asad.webp",
     atributos: { doce: 5, fresco: 3, intenso: 8, noturno: 8, floral: 1, amadeirado: 8, oriental: 9, citrico: 2, sensual: 7, elegante: 6 },
     descricao: "Leão do deserto — poderoso, amadeirado e oriental."
   },
@@ -155,7 +155,7 @@ export const perfumesMasculinos = [
     id: "m19",
     nome: "Fakhar Black",
     marca: "Lattafa",
-    imagem: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=400&q=80",
+    imagem: "/src/assets/perfumes_masculinos/fakhar_black.webp",
     atributos: { doce: 4, fresco: 5, intenso: 6, noturno: 6, floral: 2, amadeirado: 7, oriental: 7, citrico: 4, sensual: 6, elegante: 6 },
     descricao: "Orgulho em preto — rico e enigmático."
   },
@@ -163,7 +163,7 @@ export const perfumesMasculinos = [
     id: "m20",
     nome: "Turathi Blue",
     marca: "Afnan",
-    imagem: "https://images.unsplash.com/photo-1541643600914-78b084683601?w=400&q=80",
+    imagem: "/src/assets/perfumes_masculinos/turathi_blue.png",
     atributos: { doce: 5, fresco: 7, intenso: 5, noturno: 3, floral: 2, amadeirado: 6, oriental: 5, citrico: 6, sensual: 5, elegante: 7 },
     descricao: "Herança azul — frescor árabe com elegância moderna."
   },
@@ -171,7 +171,7 @@ export const perfumesMasculinos = [
     id: "m21",
     nome: "Lattafa Khamrah",
     marca: "Lattafa",
-    imagem: "https://images.unsplash.com/photo-1557170334-a9632e77c6e4?w=400&q=80",
+    imagem: "/src/assets/perfumes_masculinos/17653114152069.webp",
     atributos: { doce: 9, fresco: 1, intenso: 9, noturno: 9, floral: 1, amadeirado: 6, oriental: 9, citrico: 1, sensual: 8, elegante: 7 },
     descricao: "Elixir do oriente — especiarias embriagantes e baunilha."
   },
@@ -179,7 +179,7 @@ export const perfumesMasculinos = [
     id: "m22",
     nome: "Club de Nuit Iconic",
     marca: "Armaf",
-    imagem: "https://images.unsplash.com/photo-1594035910387-fea081d42330?w=400&q=80",
+    imagem: "/src/assets/perfumes_masculinos/club_de_nuit_iconic.webp",
     atributos: { doce: 4, fresco: 7, intenso: 5, noturno: 4, floral: 2, amadeirado: 7, oriental: 4, citrico: 6, sensual: 5, elegante: 7 },
     descricao: "Ícone noturno — frescor amadeirado impecável."
   },
@@ -187,7 +187,7 @@ export const perfumesMasculinos = [
     id: "m23",
     nome: "Bade'e Al Oud",
     marca: "Lattafa",
-    imagem: "https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=400&q=80",
+    imagem: "/src/assets/perfumes_masculinos/badee_al_oud.webp",
     atributos: { doce: 6, fresco: 2, intenso: 8, noturno: 8, floral: 2, amadeirado: 8, oriental: 10, citrico: 1, sensual: 7, elegante: 7 },
     descricao: "Maravilha do Oud — profundo e imponente."
   },
@@ -195,7 +195,7 @@ export const perfumesMasculinos = [
     id: "m24",
     nome: "Bareeq Al Dhahab",
     marca: "Lattafa",
-    imagem: "https://images.unsplash.com/photo-1590736969955-71cc94901144?w=400&q=80",
+    imagem: "/src/assets/perfumes_masculinos/bareeq_al_dhahab.jpeg",
     atributos: { doce: 7, fresco: 3, intenso: 7, noturno: 7, floral: 2, amadeirado: 6, oriental: 8, citrico: 2, sensual: 7, elegante: 7 },
     descricao: "Brilho do ouro — opulência oriental radiante."
   },
@@ -203,7 +203,7 @@ export const perfumesMasculinos = [
     id: "m25",
     nome: "Attar Al Wesal",
     marca: "Lattafa",
-    imagem: "https://images.unsplash.com/photo-1587017539504-67cfbddac569?w=400&q=80",
+    imagem: "/src/assets/perfumes_masculinos/attar_al_wesal.png",
     atributos: { doce: 6, fresco: 3, intenso: 7, noturno: 7, floral: 3, amadeirado: 7, oriental: 8, citrico: 2, sensual: 8, elegante: 6 },
     descricao: "Perfume da união — romântico e envolvente."
   },
@@ -211,7 +211,7 @@ export const perfumesMasculinos = [
     id: "m26",
     nome: "Supremacy Incense",
     marca: "Afnan",
-    imagem: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=400&q=80",
+    imagem: "/src/assets/perfumes_masculinos/supremacy_incense.webp",
     atributos: { doce: 3, fresco: 4, intenso: 7, noturno: 7, floral: 1, amadeirado: 9, oriental: 8, citrico: 3, sensual: 6, elegante: 8 },
     descricao: "Supremacia do incenso — ritual de poder."
   },
@@ -219,7 +219,7 @@ export const perfumesMasculinos = [
     id: "m27",
     nome: "EQAAB",
     marca: "Lattafa",
-    imagem: "https://images.unsplash.com/photo-1541643600914-78b084683601?w=400&q=80",
+    imagem: "/src/assets/perfumes_masculinos/eqaab.webp",
     atributos: { doce: 5, fresco: 4, intenso: 7, noturno: 7, floral: 2, amadeirado: 7, oriental: 8, citrico: 3, sensual: 7, elegante: 6 },
     descricao: "Punição aromática — intenso e inesquecível."
   }

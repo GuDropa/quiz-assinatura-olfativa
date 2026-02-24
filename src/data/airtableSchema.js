@@ -36,9 +36,9 @@ export function buildAirtablePayload(contact, resultado, respostas, genero) {
   const { matchPerfeito, outrasOpcoes, perfil } = resultado;
 
   return {
-    [AIRTABLE_FIELDS.nome]: contact.nome?.trim() ?? "",
-    [AIRTABLE_FIELDS.email]: contact.email?.trim() || "",
-    [AIRTABLE_FIELDS.telefone]: contact.telefone?.trim() ?? "",
+    [AIRTABLE_FIELDS.nome]: contact?.nome?.trim() ?? "",
+    [AIRTABLE_FIELDS.email]: contact?.email?.trim() || "",
+    [AIRTABLE_FIELDS.telefone]: contact?.telefone?.trim() ?? "",
     [AIRTABLE_FIELDS.genero]: genero === "masculino" ? "Masculino" : "Feminino",
     [AIRTABLE_FIELDS.match_id]: matchPerfeito?.id ?? "",
     [AIRTABLE_FIELDS.match_nome]: matchPerfeito?.nome ?? "",

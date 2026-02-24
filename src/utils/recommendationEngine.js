@@ -59,7 +59,7 @@ export function obterRecomendacoes(respostas, perguntas, genero) {
 
   return {
     matchPerfeito: ranking[0],
-    outrasOpcoes: ranking.slice(1, 3),
+    outrasOpcoes: ranking.slice(1, 5),
     perfil,
   };
 }

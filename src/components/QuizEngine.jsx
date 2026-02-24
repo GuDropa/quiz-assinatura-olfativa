@@ -1,57 +1,72 @@
 import { useState, useCallback } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, Instagram, MessageCircle } from "lucide-react";
 import { perguntas } from "../data/quizConfig";
 import { obterRecomendacoes } from "../utils/recommendationEngine";
 import GenderSelect from "./GenderSelect";
+import ContactStep from "./ContactStep";
 import QuestionCard from "./QuestionCard";
 import ProgressBar from "./ProgressBar";
 import ResultPage from "./ResultPage";
 
-const ETAPAS = { GENERO: "genero", QUIZ: "quiz", RESULTADO: "resultado" };
+const ETAPAS = { GENERO: "genero", CONTATO: "contato", QUIZ: "quiz", RESULTADO: "resultado" };
+
+const SOCIAL_LINKS = {
+  instagram: "https://www.instagram.com/deadecants.guarapuava/",
+  whatsapp: "https://wa.me/5511999999999",
+};
 
 export default function QuizEngine() {
   const [etapa, setEtapa] = useState(ETAPAS.GENERO);
   const [genero, setGenero] = useState(null);
+  const [contact, setContact] = useState(null);
   const [perguntaAtual, setPerguntaAtual] = useState(0);
   const [respostas, setRespostas] = useState({});
   const [resultado, setResultado] = useState(null);
 
   const handleGenero = useCallback((g) => {
     setGenero(g);
+    setEtapa(ETAPAS.CONTATO);
+  }, []);
+
+  const handleContactSubmit = useCallback((contactData) => {
+    setContact(contactData);
+    setEtapa(ETAPAS.QUIZ);
+  }, []);
+
+  const handleContactSkip = useCallback(() => {
+    setContact(null);
     setEtapa(ETAPAS.QUIZ);
   }, []);
 
   const handleResponder = useCallback(
     (valor) => {
       const pergunta = perguntas[perguntaAtual];
-      setRespostas((prev) => ({ ...prev, [pergunta.id]: valor }));
+      const newRespostas = { ...respostas, [pergunta.id]: valor };
+      setRespostas(newRespostas);
+      if (perguntaAtual < perguntas.length - 1) {
+        setPerguntaAtual((p) => p + 1);
+      } else {
+        const rec = obterRecomendacoes(newRespostas, perguntas, genero);
+        setResultado(rec);
+        setEtapa(ETAPAS.RESULTADO);
+      }
     },
-    [perguntaAtual]
+    [perguntaAtual, respostas, genero]
   );
-
-  const avancar = useCallback(() => {
-    if (perguntaAtual < perguntas.length - 1) {
-      setPerguntaAtual((p) => p + 1);
-    } else {
-      const rec = obterRecomendacoes(respostas, perguntas, genero);
-      setResultado(rec);
-      setEtapa(ETAPAS.RESULTADO);
-    }
-  }, [perguntaAtual, respostas, genero]);
 
   const voltar = useCallback(() => {
     if (perguntaAtual > 0) {
       setPerguntaAtual((p) => p - 1);
     } else {
-      setEtapa(ETAPAS.GENERO);
-      setGenero(null);
+      setEtapa(ETAPAS.CONTATO);
     }
   }, [perguntaAtual]);
 
   const recomecar = useCallback(() => {
     setEtapa(ETAPAS.GENERO);
     setGenero(null);
+    setContact(null);
     setPerguntaAtual(0);
     setRespostas({});
     setResultado(null);
@@ -59,17 +74,21 @@ export default function QuizEngine() {
 
   const perguntaAtualObj = perguntas[perguntaAtual];
   const respostaAtual = perguntaAtualObj ? respostas[perguntaAtualObj.id] : null;
-  const podeAvancar = respostaAtual != null;
-  const isUltima = perguntaAtual === perguntas.length - 1;
 
   return (
     <div className="min-h-screen flex flex-col">
-      <header className="py-5 px-6 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-linear-to-br from-burgundy to-gold flex items-center justify-center">
-            <span className="text-white font-serif font-bold text-sm">D&A</span>
+      <header
+        className="sticky top-0 z-20 py-4 sm:py-5 px-4 sm:px-6 flex items-center justify-between bg-offwhite/95 backdrop-blur-sm border-b border-graphite/5"
+        onClick={(e) => {
+          if (e.target.closest("[data-social]")) return;
+          window.location.reload();
+        }}
+      >
+        <div className="flex items-center gap-3 cursor-pointer min-w-0">
+          <div className="shrink-0">
+            <img src="/src/assets/logo_dea_noslogan.PNG" alt="D&A Decants" className="w-10 h-10 sm:w-12 sm:h-12" />
           </div>
-          <div className="hidden sm:block">
+          <div className="hidden sm:block min-w-0">
             <span className="font-serif font-bold text-graphite text-lg">D&A Decants</span>
             <span className="block text-[10px] tracking-[0.25em] uppercase text-slate-blue -mt-0.5">
               Luxo e Sofisticação em frascos
@@ -77,11 +96,31 @@ export default function QuizEngine() {
           </div>
         </div>
 
-        {etapa === ETAPAS.QUIZ && (
-          <span className="text-xs text-slate-blue tracking-widest uppercase">
-            Linha {genero === "masculino" ? "Masculina" : "Feminina"}
-          </span>
-        )}
+        <div className="flex items-center gap-3 shrink-0" data-social>
+          {etapa === ETAPAS.QUIZ && (
+            <span className="hidden sm:inline text-xs text-slate-blue tracking-widest uppercase mr-1">
+              Linha {genero === "masculino" ? "Masculina" : "Feminina"}
+            </span>
+          )}
+          <a
+            href={SOCIAL_LINKS.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+            className="p-1 rounded-full text-graphite hover:bg-gold/20 hover:text-burgundy transition-colors"
+          >
+            <Instagram className="w-7 h-7 sm:w-8 sm:h-8" />
+          </a>
+          <a
+            href={SOCIAL_LINKS.whatsapp}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="WhatsApp"
+            className="p-1 rounded-full text-graphite hover:bg-green-100 hover:text-green-600 transition-colors"
+          >
+            <MessageCircle className="w-7 h-7 sm:w-8 sm:h-8" />
+          </a>
+        </div>
       </header>
 
       <main className="flex-1 flex flex-col items-center justify-center px-4 sm:px-6 py-6">
@@ -94,6 +133,20 @@ export default function QuizEngine() {
               exit={{ opacity: 0 }}
             >
               <GenderSelect onSelect={handleGenero} />
+            </motion.div>
+          )}
+
+          {etapa === ETAPAS.CONTATO && (
+            <motion.div
+              key="contato"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <ContactStep
+                onSubmit={handleContactSubmit}
+                onSkip={handleContactSkip}
+              />
             </motion.div>
           )}
 
@@ -116,7 +169,7 @@ export default function QuizEngine() {
                 />
               </AnimatePresence>
 
-              <div className="flex justify-between items-center mt-8 max-w-2xl mx-auto">
+              <div className="flex justify-start items-center mt-8 max-w-2xl mx-auto">
                 <motion.button
                   onClick={voltar}
                   className="flex items-center gap-1 px-5 py-2.5 rounded-xl text-sm font-medium text-slate-blue hover:text-graphite transition-colors cursor-pointer"
@@ -125,24 +178,6 @@ export default function QuizEngine() {
                 >
                   <ChevronLeft className="w-4 h-4" />
                   Voltar
-                </motion.button>
-
-                <motion.button
-                  onClick={avancar}
-                  disabled={!podeAvancar}
-                  className={`
-                    flex items-center gap-1 px-7 py-3 rounded-xl text-sm font-semibold transition-all cursor-pointer
-                    ${
-                      podeAvancar
-                        ? "bg-linear-to-r from-burgundy to-burgundy-light text-white shadow-lg shadow-burgundy/25 hover:shadow-xl"
-                        : "bg-graphite/10 text-graphite/30 cursor-not-allowed"
-                    }
-                  `}
-                  whileHover={podeAvancar ? { scale: 1.03 } : {}}
-                  whileTap={podeAvancar ? { scale: 0.97 } : {}}
-                >
-                  {isUltima ? "Ver Resultado" : "Próxima"}
-                  <ChevronRight className="w-4 h-4" />
                 </motion.button>
               </div>
             </motion.div>
@@ -159,6 +194,7 @@ export default function QuizEngine() {
                 resultado={resultado}
                 respostas={respostas}
                 genero={genero}
+                contact={contact}
                 onRestart={recomecar}
               />
             </motion.div>

@@ -1,12 +1,13 @@
 import { motion } from "framer-motion";
 import { escalaRespostas } from "../data/quizConfig";
 
+// Escala sutil em tons de dourado (opacidade decrescente)
 const scaleColors = [
-  "bg-burgundy text-white",
-  "bg-burgundy-light text-white",
-  "bg-slate-blue text-white",
-  "bg-graphite/30 text-graphite",
-  "bg-graphite/15 text-graphite",
+  "bg-gold-dark/90 text-graphite",
+  "bg-gold-dark/70 text-graphite",
+  "bg-gold-dark/50 text-graphite",
+  "bg-gold-dark/30 text-graphite",
+  "bg-gold-dark/10 text-graphite",
 ];
 
 export default function AnswerScale({ selected, onSelect }) {

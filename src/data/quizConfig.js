@@ -30,8 +30,8 @@ export const perguntas = [
   // NÃO → perfume discreto, limpo, dia a dia
   {
     id: "q01",
-    texto: "Quero um perfume que chame atenção na balada.",
-    subtexto: "Aquele que deixa rastro na pista e faz perguntarem: \"o que você está usando?\"",
+    texto: "Quero um perfume que seja notado na balada.",
+    subtexto: "Algo que deixe rastro na pista e faça perguntarem: \"o que você está usando?\"",
     imagem: "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=800&q=80",
     pesos: {
       1: { intenso: 4, noturno: 3, sensual: 3 },
@@ -47,8 +47,8 @@ export const perguntas = [
   // NÃO → fragrâncias secas, frescas, herbais
   {
     id: "q02",
-    texto: "Adoro coisas doces — chocolate, baunilha, caramelo.",
-    subtexto: "Se pudesse, seu perfume teria gosto de sobremesa.",
+    texto: "Gosto de perfumes com cheiro de sobremesa.",
+    subtexto: "Pense em chocolate, baunilha, caramelo e afins.",
     imagem: "https://images.unsplash.com/photo-1551024601-bec78aea704b?w=800&q=80",
     pesos: {
       1: { doce: 4, oriental: 2, sensual: 2 },
@@ -64,8 +64,8 @@ export const perguntas = [
   // NÃO → quente, encorpado, amadeirado, oriental
   {
     id: "q03",
-    texto: "Me sinto mais eu de chinelo na praia do que de sapato social.",
-    subtexto: "Sol na cara, brisa do mar, pé na areia — essa é a energia.",
+    texto: "Me sinto mais eu em clima de praia do que em ambiente formal.",
+    subtexto: "Sol na cara, brisa do mar, pé na areia — essa é a sua energia ideal?",
     imagem: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80",
     pesos: {
       1: { fresco: 4, citrico: 3, elegante: 1 },
@@ -81,8 +81,8 @@ export const perguntas = [
   // NÃO → leve, floral, despojado
   {
     id: "q04",
-    texto: "Gosto de passar a imagem de alguém elegante e no controle.",
-    subtexto: "Terno bem cortado, relógio bonito, postura de quem sabe o que quer.",
+    texto: "Quero que meu perfume passe imagem de elegância e autoridade.",
+    subtexto: "Como um terno bem cortado, relógio bonito e postura de quem sabe o que quer.",
     imagem: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80",
     pesos: {
       1: { elegante: 4, amadeirado: 3, intenso: 1 },
@@ -98,8 +98,8 @@ export const perguntas = [
   // NÃO → esportivo, cítrico, arejado
   {
     id: "q05",
-    texto: "Quero um perfume que conquiste no primeiro encontro.",
-    subtexto: "Jantar à luz de velas, olhar nos olhos, clima de \"não quero ir embora\".",
+    texto: "Quero um perfume pensado para encontros românticos.",
+    subtexto: "Jantar à luz de velas, clima de \"não quero ir embora\".",
     imagem: "https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?w=800&q=80",
     pesos: {
       1: { sensual: 4, floral: 3, noturno: 2 },
@@ -115,8 +115,8 @@ export const perguntas = [
   // NÃO → clean, transparente, floral leve
   {
     id: "q06",
-    texto: "Curto coisas exóticas — incenso, especiarias, tapetes persas.",
-    subtexto: "A vibe de um mercado em Marrakech ou uma mesquita ao pôr do sol.",
+    texto: "Gosto de perfumes com cheiro exótico e misterioso.",
+    subtexto: "Pense em incenso, especiarias, oud, mercados árabes e tapetes persas.",
     imagem: "https://images.unsplash.com/photo-1548690312-e3b507d8c110?w=800&q=80",
     pesos: {
       1: { oriental: 4, amadeirado: 3, intenso: 2 },
@@ -132,8 +132,8 @@ export const perguntas = [
   // NÃO → extravagante, ultra-doce, pesado
   {
     id: "q07",
-    texto: "Meu programa favorito é um barzinho com boa música e amigos.",
-    subtexto: "Sem frescura, sem exagero — só precisa estar cheiroso e no clima certo.",
+    texto: "Meu programa ideal é um barzinho com boa música e amigos.",
+    subtexto: "Nada exagerado: só estar cheiroso e no clima certo.",
     imagem: "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=800&q=80",
     pesos: {
       1: { amadeirado: 3, elegante: 3, fresco: 2 },
@@ -141,6 +141,25 @@ export const perguntas = [
       3: { amadeirado: 1, intenso: 1 },
       4: { intenso: 2, doce: 2 },
       5: { intenso: 3, doce: 3, oriental: 2 },
+    },
+  },
+
+  // ─── 8. VIBE INVESTIMENTO / LUXO x DIA A DIA ─────────────────────────
+  // SIM → peça de luxo para momentos especiais
+  // NÃO → algo bom e honesto para usar sempre
+  {
+    id: "q08",
+    texto: "Prefiro ter um perfume mais especial do que só algo para o dia a dia.",
+    subtexto: "Pense se você enxerga perfume mais como investimento em luxo ou só como item básico.",
+    imagem: "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=800&q=80",
+    pesos: {
+      // Mais aberto a investir em algo premium, assinatura
+      1: { oriental: 3, amadeirado: 2, intenso: 2, elegante: 2 },
+      2: { oriental: 2, amadeirado: 1, elegante: 1 },
+      3: {},
+      // Mais foco em custo-benefício e uso diário
+      4: { fresco: 2, citrico: 2, doce: 1 },
+      5: { fresco: 3, citrico: 3, doce: 1, sensual: 1 },
     },
   },
 ];
