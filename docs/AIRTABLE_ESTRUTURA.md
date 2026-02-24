@@ -15,6 +15,7 @@ Use esta especificação para criar a base no Airtable. Cada campo está com nom
 
 | Campo (nome na API) | Nome exibido no Airtable | Tipo | Configuração / Observações |
 |---------------------|---------------------------|------|----------------------------|
+| `nome` | Nome | Single line text | Nome do lead. Opcional. |
 | `email` | Email | Email | Obrigatório. Primary field = não (use `created_at` ou um Single line text como ID se quiser). |
 | `telefone` | Telefone | Phone number | Formato livre (ex.: +55 11 99999-9999). Pode ser opcional. |
 | `genero` | Linha | Single select | Opções: `Masculino`, `Feminino`. |
@@ -36,16 +37,17 @@ Use esta especificação para criar a base no Airtable. Cada campo está com nom
 
 | # | Field name (API) | Tipo no Airtable |
 |---|------------------|------------------|
-| 1 | `email` | Email |
-| 2 | `telefone` | Phone number |
-| 3 | `genero` | Single select (Masculino, Feminino) |
-| 4 | `match_id` | Single line text |
-| 5 | `match_nome` | Single line text |
-| 6 | `match_marca` | Single line text |
-| 7 | `outras_opcoes` | Long text |
-| 8 | `respostas` | Long text |
-| 9 | `perfil` | Long text |
-| 10 | `created_at` | Date (incluir time) — ou use “Created time” nativo |
+| 1 | `nome` | Single line text |
+| 2 | `email` | Email |
+| 3 | `telefone` | Phone number |
+| 4 | `genero` | Single select (Masculino, Feminino) |
+| 5 | `match_id` | Single line text |
+| 6 | `match_nome` | Single line text |
+| 7 | `match_marca` | Single line text |
+| 8 | `outras_opcoes` | Long text |
+| 9 | `respostas` | Long text |
+| 10 | `perfil` | Long text |
+| 11 | `created_at` | Date (incluir time) — ou use “Created time” nativo |
 
 ---
 
@@ -55,6 +57,7 @@ Quando você integrar o front com um backend que grava no Airtable, o payload de
 
 ```json
 {
+  "nome": "Maria Silva",
   "email": "cliente@email.com",
   "telefone": "+5511999999999",
   "genero": "masculino",

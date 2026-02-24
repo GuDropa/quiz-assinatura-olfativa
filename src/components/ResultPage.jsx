@@ -1,5 +1,20 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { ShoppingBag, MessageCircle, RotateCcw, Star, Award, Sparkles } from "lucide-react";
+import {
+  ShoppingBag,
+  MessageCircle,
+  RotateCcw,
+  Star,
+  Award,
+  Sparkles,
+  User,
+  Mail,
+  Phone,
+  Send,
+  CheckCircle,
+  AlertCircle,
+} from "lucide-react";
+import { buildAirtablePayload } from "../data/airtableSchema";
 
 function PerfumeCard({ perfume, destaque = false }) {
   const whatsappMsg = encodeURIComponent(
@@ -98,8 +113,42 @@ function PerfumeCard({ perfume, destaque = false }) {
   );
 }
 
-export default function ResultPage({ resultado, onRestart }) {
+export default function ResultPage({ resultado, respostas = {}, genero, onRestart }) {
   const { matchPerfeito, outrasOpcoes } = resultado;
+
+  const [nome, setNome] = useState("");
+  const [email, setEmail] = useState("");
+  const [telefone, setTelefone] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState(null);
+
+  async function handleSubmitLead(e) {
+    e.preventDefault();
+    if (!email?.trim()) return;
+    setError(null);
+    setLoading(true);
+    try {
+      const fields = buildAirtablePayload(
+        { nome: nome.trim(), email: email.trim(), telefone: telefone.trim() },
+        resultado,
+        respostas,
+        genero
+      );
+      const res = await fetch("/api/save-lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ fields }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.message || data.error || "Falha ao enviar");
+      setSubmitted(true);
+    } catch (err) {
+      setError(err.message || "Não foi possível salvar. Tente de novo.");
+    } finally {
+      setLoading(false);
+    }
+  }
 
   return (
     <motion.div
@@ -138,6 +187,118 @@ export default function ResultPage({ resultado, onRestart }) {
           {outrasOpcoes.map((perfume) => (
             <PerfumeCard key={perfume.id} perfume={perfume} />
           ))}
+        </div>
+      </div>
+
+      <div className="mb-8 rounded-2xl bg-white shadow-xl border border-graphite/5 overflow-hidden">
+        <div className="bg-linear-to-r from-burgundy/90 to-burgundy-light/90 px-6 py-4">
+          <h3 className="font-serif text-xl font-bold text-white">
+            Receba ofertas e suporte
+          </h3>
+          <p className="text-white/80 text-sm mt-0.5">
+            Deixe seus dados e entramos em contato para o seu decant.
+          </p>
+        </div>
+        <div className="p-6">
+          {submitted ? (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="flex items-center gap-3 text-graphite rounded-xl bg-gold/10 border border-gold/30 py-4 px-5"
+            >
+              <CheckCircle className="w-8 h-8 text-gold shrink-0" />
+              <div>
+                <p className="font-semibold">Dados enviados!</p>
+                <p className="text-sm text-slate-blue">
+                  Em breve entraremos em contato.
+                </p>
+              </div>
+            </motion.div>
+          ) : (
+            <form onSubmit={handleSubmitLead} className="space-y-4">
+              <div>
+                <label
+                  htmlFor="lead-nome"
+                  className="block text-sm font-medium text-graphite mb-1.5"
+                >
+                  Nome
+                </label>
+                <div className="relative">
+                  <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-blue" />
+                  <input
+                    id="lead-nome"
+                    type="text"
+                    value={nome}
+                    onChange={(e) => setNome(e.target.value)}
+                    placeholder="Seu nome"
+                    className="w-full pl-10 pr-4 py-3 rounded-xl border border-graphite/15 bg-offwhite text-graphite placeholder:text-slate-blue/60 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent"
+                    autoComplete="name"
+                  />
+                </div>
+              </div>
+              <div>
+                <label
+                  htmlFor="lead-email"
+                  className="block text-sm font-medium text-graphite mb-1.5"
+                >
+                  Email <span className="text-burgundy">*</span>
+                </label>
+                <div className="relative">
+                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-blue" />
+                  <input
+                    id="lead-email"
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="seu@email.com"
+                    required
+                    className="w-full pl-10 pr-4 py-3 rounded-xl border border-graphite/15 bg-offwhite text-graphite placeholder:text-slate-blue/60 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent"
+                    autoComplete="email"
+                  />
+                </div>
+              </div>
+              <div>
+                <label
+                  htmlFor="lead-telefone"
+                  className="block text-sm font-medium text-graphite mb-1.5"
+                >
+                  Telefone
+                </label>
+                <div className="relative">
+                  <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-blue" />
+                  <input
+                    id="lead-telefone"
+                    type="tel"
+                    value={telefone}
+                    onChange={(e) => setTelefone(e.target.value)}
+                    placeholder="(11) 99999-9999"
+                    className="w-full pl-10 pr-4 py-3 rounded-xl border border-graphite/15 bg-offwhite text-graphite placeholder:text-slate-blue/60 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent"
+                    autoComplete="tel"
+                  />
+                </div>
+              </div>
+              {error && (
+                <div className="flex items-center gap-2 text-red-600 text-sm py-1">
+                  <AlertCircle className="w-4 h-4 shrink-0" />
+                  {error}
+                </div>
+              )}
+              <button
+                type="submit"
+                disabled={loading || !email?.trim()}
+                className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl font-semibold text-white bg-linear-to-r from-burgundy to-burgundy-light hover:opacity-95 disabled:opacity-50 disabled:cursor-not-allowed transition-opacity"
+              >
+                {loading ? (
+                  "Enviando..."
+                ) : (
+                  <>
+                    <Send className="w-4 h-4" />
+                    Enviar e salvar meu resultado
+                  </>
+                )}
+              </button>
+            </form>
+          )}
         </div>
       </div>
 

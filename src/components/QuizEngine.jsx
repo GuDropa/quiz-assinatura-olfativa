@@ -155,7 +155,12 @@ export default function QuizEngine() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
             >
-              <ResultPage resultado={resultado} onRestart={recomecar} />
+              <ResultPage
+                resultado={resultado}
+                respostas={respostas}
+                genero={genero}
+                onRestart={recomecar}
+              />
             </motion.div>
           )}
         </AnimatePresence>

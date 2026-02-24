@@ -10,6 +10,7 @@
  * Use estes nomes ao configurar a base e ao enviar pela API.
  */
 export const AIRTABLE_FIELDS = {
+  nome: "nome",
   email: "email",
   telefone: "telefone",
   genero: "genero",
@@ -25,7 +26,7 @@ export const AIRTABLE_FIELDS = {
 /**
  * Monta o objeto de campos para criar um registro na tabela Leads.
  *
- * @param {Object} contact - { email: string, telefone?: string }
+ * @param {Object} contact - { nome?: string, email: string, telefone?: string }
  * @param {Object} resultado - { matchPerfeito, outrasOpcoes, perfil } (retorno de obterRecomendacoes)
  * @param {Object} respostas - { [perguntaId]: valor 1-5 }
  * @param {"masculino"|"feminino"} genero
@@ -35,6 +36,7 @@ export function buildAirtablePayload(contact, resultado, respostas, genero) {
   const { matchPerfeito, outrasOpcoes, perfil } = resultado;
 
   return {
+    [AIRTABLE_FIELDS.nome]: contact.nome?.trim() ?? "",
     [AIRTABLE_FIELDS.email]: contact.email?.trim() || "",
     [AIRTABLE_FIELDS.telefone]: contact.telefone?.trim() ?? "",
     [AIRTABLE_FIELDS.genero]: genero === "masculino" ? "Masculino" : "Feminino",
