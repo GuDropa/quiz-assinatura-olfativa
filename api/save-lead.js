@@ -38,6 +38,7 @@ export default async function handler(req, res) {
 
   const apiKey = process.env.AIRTABLE_API_KEY;
   const baseId = process.env.AIRTABLE_BASE_ID;
+  const tableName = process.env.AIRTABLE_TABLE_NAME;
 
   if (!apiKey || !baseId) {
     Object.entries(corsHeaders(origin)).forEach(([k, v]) => res.setHeader(k, v));
@@ -61,7 +62,7 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: "Body must contain 'fields' or be the fields object" });
   }
 
-  const url = `${AIRTABLE_API_URL}/${baseId}/Leads`;
+  const url = `${AIRTABLE_API_URL}/${baseId}/${tableName}`;
   const options = {
     method: "POST",
     headers: {
