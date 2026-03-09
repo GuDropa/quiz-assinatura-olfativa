@@ -23,7 +23,7 @@ export default function GenderSelect({ onSelect }) {
         Descubra o perfume perfeito para sua personalidade.
       </p>
       <p className="text-slate-blue/70 text-sm mb-12">
-        Responda 7 perguntas rápidas e encontre seu match.
+        Responda 8 perguntas rápidas e encontre seu match.
       </p>
 
       <p className="text-graphite font-medium mb-6 text-lg">
@@ -43,7 +43,7 @@ export default function GenderSelect({ onSelect }) {
             <span className="font-serif text-xl font-bold block mb-1">
               Masculino
             </span>
-            <span className="text-white/60 text-sm">27 fragrâncias</span>
+            {/* <span className="text-white/60 text-sm">27 fragrâncias</span> */}
           </div>
         </motion.button>
 
@@ -59,7 +59,7 @@ export default function GenderSelect({ onSelect }) {
             <span className="font-serif text-xl font-bold block mb-1">
               Feminino
             </span>
-            <span className="text-slate-blue text-sm">20 fragrâncias</span>
+            {/* <span className="text-slate-blue text-sm">20 fragrâncias</span> */}
           </div>
         </motion.button>
       </div>

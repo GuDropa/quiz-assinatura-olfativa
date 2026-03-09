@@ -1,78 +1,72 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useMemo } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, Instagram, MessageCircle } from "lucide-react";
-import { perguntas } from "../data/quizConfig";
+import { perguntasPorGenero } from "../data/quizConfig";
 import { obterRecomendacoes } from "../utils/recommendationEngine";
 import GenderSelect from "./GenderSelect";
-import ContactStep from "./ContactStep";
 import QuestionCard from "./QuestionCard";
 import ProgressBar from "./ProgressBar";
 import ResultPage from "./ResultPage";
 
-const ETAPAS = { GENERO: "genero", CONTATO: "contato", QUIZ: "quiz", RESULTADO: "resultado" };
+const ETAPAS = { GENERO: "genero", QUIZ: "quiz", RESULTADO: "resultado" };
 
 const SOCIAL_LINKS = {
   instagram: "https://www.instagram.com/deadecants.guarapuava/",
-  whatsapp: "https://wa.me/5511999999999",
+  whatsapp: "https://wa.me/5542936180888",
 };
 
 export default function QuizEngine() {
   const [etapa, setEtapa] = useState(ETAPAS.GENERO);
   const [genero, setGenero] = useState(null);
-  const [contact, setContact] = useState(null);
   const [perguntaAtual, setPerguntaAtual] = useState(0);
   const [respostas, setRespostas] = useState({});
   const [resultado, setResultado] = useState(null);
 
+  const perguntasAtivas = useMemo(() => {
+    return genero ? (perguntasPorGenero[genero] || []) : [];
+  }, [genero]);
+
   const handleGenero = useCallback((g) => {
     setGenero(g);
-    setEtapa(ETAPAS.CONTATO);
-  }, []);
-
-  const handleContactSubmit = useCallback((contactData) => {
-    setContact(contactData);
-    setEtapa(ETAPAS.QUIZ);
-  }, []);
-
-  const handleContactSkip = useCallback(() => {
-    setContact(null);
+    setPerguntaAtual(0);
+    setRespostas({});
+    setResultado(null);
     setEtapa(ETAPAS.QUIZ);
   }, []);
 
   const handleResponder = useCallback(
     (valor) => {
-      const pergunta = perguntas[perguntaAtual];
+      const pergunta = perguntasAtivas[perguntaAtual];
       const newRespostas = { ...respostas, [pergunta.id]: valor };
       setRespostas(newRespostas);
-      if (perguntaAtual < perguntas.length - 1) {
+      if (perguntaAtual < perguntasAtivas.length - 1) {
         setPerguntaAtual((p) => p + 1);
       } else {
-        const rec = obterRecomendacoes(newRespostas, perguntas, genero);
+        const rec = obterRecomendacoes(newRespostas, perguntasAtivas, genero);
         setResultado(rec);
         setEtapa(ETAPAS.RESULTADO);
       }
     },
-    [perguntaAtual, respostas, genero]
+    [perguntaAtual, respostas, genero, perguntasAtivas]
   );
 
   const voltar = useCallback(() => {
     if (perguntaAtual > 0) {
       setPerguntaAtual((p) => p - 1);
     } else {
-      setEtapa(ETAPAS.CONTATO);
+      setEtapa(ETAPAS.GENERO);
     }
   }, [perguntaAtual]);
 
   const recomecar = useCallback(() => {
     setEtapa(ETAPAS.GENERO);
     setGenero(null);
-    setContact(null);
     setPerguntaAtual(0);
     setRespostas({});
     setResultado(null);
   }, []);
 
-  const perguntaAtualObj = perguntas[perguntaAtual];
+  const perguntaAtualObj = perguntasAtivas[perguntaAtual];
   const respostaAtual = perguntaAtualObj ? respostas[perguntaAtualObj.id] : null;
 
   return (
@@ -136,20 +130,6 @@ export default function QuizEngine() {
             </motion.div>
           )}
 
-          {etapa === ETAPAS.CONTATO && (
-            <motion.div
-              key="contato"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            >
-              <ContactStep
-                onSubmit={handleContactSubmit}
-                onSkip={handleContactSkip}
-              />
-            </motion.div>
-          )}
-
           {etapa === ETAPAS.QUIZ && (
             <motion.div
               key="quiz"
@@ -158,7 +138,7 @@ export default function QuizEngine() {
               exit={{ opacity: 0 }}
               className="w-full max-w-2xl"
             >
-              <ProgressBar current={perguntaAtual} total={perguntas.length} />
+              <ProgressBar current={perguntaAtual} total={perguntasAtivas.length} />
 
               <AnimatePresence mode="wait">
                 <QuestionCard
@@ -194,7 +174,6 @@ export default function QuizEngine() {
                 resultado={resultado}
                 respostas={respostas}
                 genero={genero}
-                contact={contact}
                 onRestart={recomecar}
               />
             </motion.div>

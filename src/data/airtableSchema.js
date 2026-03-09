@@ -26,7 +26,7 @@ export const AIRTABLE_FIELDS = {
 /**
  * Monta o objeto de campos para criar um registro na tabela Leads.
  *
- * @param {Object} contact - { nome?: string, email: string, telefone?: string }
+ * @param {Object} contact - { nome?: string, telefone?: string }
  * @param {Object} resultado - { matchPerfeito, outrasOpcoes, perfil } (retorno de obterRecomendacoes)
  * @param {Object} respostas - { [perguntaId]: valor 1-5 }
  * @param {"masculino"|"feminino"} genero
@@ -53,5 +53,18 @@ export function buildAirtablePayload(contact, resultado, respostas, genero) {
     [AIRTABLE_FIELDS.respostas]: JSON.stringify(respostas || {}),
     [AIRTABLE_FIELDS.perfil]: JSON.stringify(perfil || {}),
     [AIRTABLE_FIELDS.created_at]: new Date().toISOString(),
+  };
+}
+
+/**
+ * Monta apenas os campos de contato para PATCH (atualização).
+ *
+ * @param {Object} contact - { nome?: string, telefone?: string }
+ * @returns {Object} Campos nome e telefone para atualização
+ */
+export function buildContactFields(contact) {
+  return {
+    [AIRTABLE_FIELDS.nome]: contact?.nome?.trim() ?? "",
+    [AIRTABLE_FIELDS.telefone]: contact?.telefone?.trim() ?? "",
   };
 }

@@ -6,7 +6,34 @@
  * As respostas do quiz somam/subtraem nesses eixos para gerar o match.
  */
 
-export const perfumesMasculinos = [
+const LABEL_NOTAS = {
+  doce: "Doce",
+  fresco: "Fresco",
+  intenso: "Intenso",
+  noturno: "Noturno",
+  floral: "Floral",
+  amadeirado: "Amadeirado",
+  oriental: "Oriental",
+  citrico: "Citrico",
+  sensual: "Sensual",
+  elegante: "Elegante",
+};
+
+function adicionarNotasPrincipais(lista) {
+  return lista.map((perfume) => {
+    const notasPrincipais = Object.entries(perfume.atributos || {})
+      .sort(([, a], [, b]) => b - a)
+      .slice(0, 4)
+      .map(([atributo]) => LABEL_NOTAS[atributo] || atributo);
+
+    return {
+      ...perfume,
+      notasPrincipais,
+    };
+  });
+}
+
+const perfumesMasculinosBase = [
   {
     id: "m01",
     nome: "Sauvage EDP",
@@ -20,7 +47,7 @@ export const perfumesMasculinos = [
     nome: "Bleu de Chanel",
     marca: "Chanel",
     imagem: "/assets/perfumes_masculinos/bleu_de_chanel.webp",
-    atributos: { doce: 3, fresco: 7, intenso: 5, noturno: 4, floral: 2, amadeirado: 7, oriental: 3, citrico: 6, sensual: 5, elegante: 9 },
+    atributos: { doce: 2, fresco: 6, intenso: 4, noturno: 3, floral: 2, amadeirado: 8, oriental: 2, citrico: 5, sensual: 4, elegante: 9 },
     descricao: "Elegância atemporal, versátil para qualquer ocasião."
   },
   {
@@ -60,7 +87,7 @@ export const perfumesMasculinos = [
     nome: "Acqua di Giò Profondo",
     marca: "Giorgio Armani",
     imagem: "/assets/perfumes_masculinos/acqua_di_gio_profondo.webp",
-    atributos: { doce: 2, fresco: 9, intenso: 4, noturno: 2, floral: 2, amadeirado: 5, oriental: 3, citrico: 8, sensual: 4, elegante: 7 },
+    atributos: { doce: 1, fresco: 10, intenso: 3, noturno: 1, floral: 2, amadeirado: 4, oriental: 2, citrico: 9, sensual: 2, elegante: 5 },
     descricao: "Profundidade oceânica, brisa marítima sofisticada."
   },
   {
@@ -132,7 +159,7 @@ export const perfumesMasculinos = [
     nome: "Boss Bottled Infinite",
     marca: "Hugo Boss",
     imagem: "/assets/perfumes_masculinos/boss_bottled_infinite.webp",
-    atributos: { doce: 4, fresco: 6, intenso: 5, noturno: 4, floral: 2, amadeirado: 8, oriental: 4, citrico: 5, sensual: 5, elegante: 8 },
+    atributos: { doce: 4, fresco: 5, intenso: 4, noturno: 3, floral: 2, amadeirado: 9, oriental: 3, citrico: 4, sensual: 4, elegante: 9 },
     descricao: "Infinitamente elegante — amadeirado e refinado."
   },
   {
@@ -164,7 +191,7 @@ export const perfumesMasculinos = [
     nome: "Turathi Blue",
     marca: "Afnan",
     imagem: "/assets/perfumes_masculinos/turathi_blue.png",
-    atributos: { doce: 5, fresco: 7, intenso: 5, noturno: 3, floral: 2, amadeirado: 6, oriental: 5, citrico: 6, sensual: 5, elegante: 7 },
+    atributos: { doce: 4, fresco: 8, intenso: 4, noturno: 2, floral: 2, amadeirado: 5, oriental: 4, citrico: 8, sensual: 3, elegante: 6 },
     descricao: "Herança azul — frescor árabe com elegância moderna."
   },
   {
@@ -225,20 +252,20 @@ export const perfumesMasculinos = [
   }
 ];
 
-export const perfumesFemininos = [
+const perfumesFemininosBase = [
   {
     id: "f01",
     nome: "La Vie Est Belle",
     marca: "Lancôme",
-    imagem: "https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?w=400&q=80",
-    atributos: { doce: 9, fresco: 3, intenso: 6, noturno: 5, floral: 6, amadeirado: 3, oriental: 4, citrico: 2, sensual: 6, elegante: 8 },
+    imagem: "/assets/perfumes_femininos/la_vie_est_belle.webp",
+    atributos: { doce: 9, fresco: 2, intenso: 7, noturno: 6, floral: 5, amadeirado: 3, oriental: 6, citrico: 1, sensual: 8, elegante: 7 },
     descricao: "A vida é bela — doçura gourmand irresistível."
   },
   {
     id: "f02",
     nome: "Good Girl",
     marca: "Carolina Herrera",
-    imagem: "https://images.unsplash.com/photo-1563170351-be82bc888aa4?w=400&q=80",
+    imagem: "/assets/perfumes_femininos/good_girl.webp",
     atributos: { doce: 7, fresco: 3, intenso: 7, noturno: 8, floral: 4, amadeirado: 4, oriental: 6, citrico: 2, sensual: 9, elegante: 8 },
     descricao: "Dualidade perfeita — doce e poderosa."
   },
@@ -246,39 +273,39 @@ export const perfumesFemininos = [
     id: "f03",
     nome: "Libre",
     marca: "Yves Saint Laurent",
-    imagem: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=400&q=80",
-    atributos: { doce: 5, fresco: 5, intenso: 6, noturno: 5, floral: 7, amadeirado: 4, oriental: 5, citrico: 5, sensual: 7, elegante: 9 },
+    imagem: "/assets/perfumes_femininos/libre.webp",
+    atributos: { doce: 4, fresco: 6, intenso: 6, noturno: 5, floral: 7, amadeirado: 4, oriental: 5, citrico: 6, sensual: 8, elegante: 9 },
     descricao: "Liberdade feminina — lavanda e flor de laranjeira."
   },
   {
     id: "f04",
     nome: "Paradoxe",
     marca: "Prada",
-    imagem: "https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?w=400&q=80",
-    atributos: { doce: 5, fresco: 6, intenso: 5, noturno: 4, floral: 7, amadeirado: 5, oriental: 4, citrico: 4, sensual: 5, elegante: 8 },
+    imagem: "/assets/perfumes_femininos/paradoxe.webp",
+    atributos: { doce: 6, fresco: 5, intenso: 6, noturno: 5, floral: 6, amadeirado: 5, oriental: 5, citrico: 3, sensual: 7, elegante: 8 },
     descricao: "Paradoxo encantador — múltiplas facetas em harmonia."
   },
   {
     id: "f05",
     nome: "My Way",
     marca: "Giorgio Armani",
-    imagem: "https://images.unsplash.com/photo-1563170351-be82bc888aa4?w=400&q=80",
-    atributos: { doce: 4, fresco: 7, intenso: 4, noturno: 3, floral: 8, amadeirado: 4, oriental: 3, citrico: 5, sensual: 4, elegante: 8 },
+    imagem: "/assets/perfumes_femininos/my_way.webp",
+    atributos: { doce: 4, fresco: 8, intenso: 4, noturno: 3, floral: 8, amadeirado: 3, oriental: 3, citrico: 6, sensual: 4, elegante: 8 },
     descricao: "Meu caminho — floral branco luminoso e delicado."
   },
   {
     id: "f06",
     nome: "Chloé Le Parfum",
     marca: "Chloé",
-    imagem: "https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?w=400&q=80",
-    atributos: { doce: 4, fresco: 6, intenso: 4, noturno: 3, floral: 9, amadeirado: 3, oriental: 2, citrico: 4, sensual: 4, elegante: 8 },
+    imagem: "/assets/perfumes_femininos/chloe_le_parfum.png",
+    atributos: { doce: 4, fresco: 5, intenso: 5, noturno: 4, floral: 8, amadeirado: 3, oriental: 3, citrico: 3, sensual: 6, elegante: 9 },
     descricao: "Romantismo parisiense — rosas e peônia em véu."
   },
   {
     id: "f07",
     nome: "D&G Devotion",
     marca: "Dolce & Gabbana",
-    imagem: "https://images.unsplash.com/photo-1563170351-be82bc888aa4?w=400&q=80",
+    imagem: "/assets/perfumes_femininos/d_g_devotion.webp",
     atributos: { doce: 8, fresco: 4, intenso: 5, noturno: 4, floral: 5, amadeirado: 3, oriental: 4, citrico: 3, sensual: 5, elegante: 7 },
     descricao: "Devoção doce — confeitaria italiana sofisticada."
   },
@@ -286,23 +313,23 @@ export const perfumesFemininos = [
     id: "f08",
     nome: "Dior J'adore",
     marca: "Dior",
-    imagem: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=400&q=80",
-    atributos: { doce: 4, fresco: 5, intenso: 5, noturno: 4, floral: 9, amadeirado: 3, oriental: 3, citrico: 4, sensual: 5, elegante: 10 },
+    imagem: "/assets/perfumes_femininos/dior_j_adore.webp",
+    atributos: { doce: 3, fresco: 6, intenso: 5, noturno: 4, floral: 8, amadeirado: 3, oriental: 2, citrico: 5, sensual: 6, elegante: 10 },
     descricao: "O ícone dourado — floral absoluto e luxuoso."
   },
   {
     id: "f09",
     nome: "Chloé Love Story",
     marca: "Chloé",
-    imagem: "https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?w=400&q=80",
-    atributos: { doce: 4, fresco: 7, intenso: 3, noturno: 2, floral: 9, amadeirado: 3, oriental: 2, citrico: 5, sensual: 3, elegante: 7 },
+    imagem: "/assets/perfumes_femininos/chloe_love_story.avif",
+    atributos: { doce: 3, fresco: 8, intenso: 2, noturno: 1, floral: 8, amadeirado: 2, oriental: 1, citrico: 7, sensual: 2, elegante: 6 },
     descricao: "História de amor — flor de laranjeira e jasmin."
   },
   {
     id: "f10",
     nome: "Nina Extra Rouge",
     marca: "Nina Ricci",
-    imagem: "https://images.unsplash.com/photo-1563170351-be82bc888aa4?w=400&q=80",
+    imagem: "/assets/perfumes_femininos/nina_extra_rouge.png",
     atributos: { doce: 8, fresco: 3, intenso: 6, noturno: 6, floral: 4, amadeirado: 3, oriental: 5, citrico: 2, sensual: 7, elegante: 6 },
     descricao: "Vermelho extra — frutas vermelhas e caramelo viciante."
   },
@@ -310,23 +337,23 @@ export const perfumesFemininos = [
     id: "f11",
     nome: "Yara",
     marca: "Lattafa",
-    imagem: "https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?w=400&q=80",
-    atributos: { doce: 8, fresco: 4, intenso: 5, noturno: 5, floral: 6, amadeirado: 3, oriental: 5, citrico: 3, sensual: 6, elegante: 6 },
+    imagem: "/assets/perfumes_femininos/yara.webp",
+    atributos: { doce: 9, fresco: 3, intenso: 6, noturno: 6, floral: 4, amadeirado: 3, oriental: 6, citrico: 2, sensual: 7, elegante: 6 },
     descricao: "Rosa dourada — frutas tropicais e baunilha oriental."
   },
   {
     id: "f12",
     nome: "Sabah Al Ward",
     marca: "Lattafa",
-    imagem: "https://images.unsplash.com/photo-1563170351-be82bc888aa4?w=400&q=80",
-    atributos: { doce: 5, fresco: 6, intenso: 4, noturno: 3, floral: 9, amadeirado: 3, oriental: 4, citrico: 4, sensual: 4, elegante: 7 },
+    imagem: "/assets/perfumes_femininos/sabah_al_ward.webp",
+    atributos: { doce: 6, fresco: 4, intenso: 5, noturno: 4, floral: 8, amadeirado: 3, oriental: 5, citrico: 3, sensual: 5, elegante: 7 },
     descricao: "Manhã das rosas — frescor floral encantador."
   },
   {
     id: "f13",
     nome: "Royal Amber",
     marca: "Lattafa",
-    imagem: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=400&q=80",
+    imagem: "/assets/perfumes_femininos/royal_amber.png",
     atributos: { doce: 6, fresco: 3, intenso: 7, noturno: 7, floral: 3, amadeirado: 6, oriental: 8, citrico: 2, sensual: 7, elegante: 7 },
     descricao: "Âmbar real — quente, rico e majestoso."
   },
@@ -334,7 +361,7 @@ export const perfumesFemininos = [
     id: "f14",
     nome: "Khamrah",
     marca: "Lattafa",
-    imagem: "https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?w=400&q=80",
+    imagem: "/assets/perfumes_femininos/khamrah.webp",
     atributos: { doce: 8, fresco: 1, intenso: 9, noturno: 9, floral: 2, amadeirado: 6, oriental: 9, citrico: 1, sensual: 8, elegante: 7 },
     descricao: "Elixir feminino — especiarias quentes e baunilha."
   },
@@ -342,48 +369,51 @@ export const perfumesFemininos = [
     id: "f15",
     nome: "Durrat Al Aroos",
     marca: "Ard Al Zaafaran",
-    imagem: "https://images.unsplash.com/photo-1563170351-be82bc888aa4?w=400&q=80",
-    atributos: { doce: 6, fresco: 4, intenso: 6, noturno: 6, floral: 5, amadeirado: 5, oriental: 7, citrico: 3, sensual: 6, elegante: 7 },
+    imagem: "/assets/perfumes_femininos/durrat_al_aroos.webp",
+    atributos: { doce: 6, fresco: 3, intenso: 6, noturno: 6, floral: 5, amadeirado: 5, oriental: 8, citrico: 2, sensual: 6, elegante: 7 },
     descricao: "Pérola da noiva — oriental floral romântico."
   },
   {
     id: "f16",
     nome: "Ameerat Al Arab",
     marca: "Asdaaf",
-    imagem: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=400&q=80",
-    atributos: { doce: 5, fresco: 4, intenso: 6, noturno: 6, floral: 5, amadeirado: 5, oriental: 8, citrico: 3, sensual: 7, elegante: 7 },
+    imagem: "/assets/perfumes_femininos/ameerat_al_arab.webp",
+    atributos: { doce: 5, fresco: 3, intenso: 7, noturno: 7, floral: 4, amadeirado: 5, oriental: 8, citrico: 2, sensual: 8, elegante: 7 },
     descricao: "Princesa do oriente — mistério e sofisticação."
   },
   {
     id: "f17",
     nome: "Velvet Gold",
     marca: "Lattafa",
-    imagem: "https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?w=400&q=80",
-    atributos: { doce: 7, fresco: 3, intenso: 7, noturno: 7, floral: 4, amadeirado: 5, oriental: 7, citrico: 2, sensual: 8, elegante: 8 },
+    imagem: "/assets/perfumes_femininos/velvet_gold.jpeg",
+    atributos: { doce: 7, fresco: 2, intenso: 8, noturno: 8, floral: 3, amadeirado: 5, oriental: 8, citrico: 1, sensual: 9, elegante: 8 },
     descricao: "Veludo dourado — luxo oriental aveludado."
   },
   {
     id: "f18",
     nome: "Noor Al Sabah",
     marca: "Lattafa",
-    imagem: "https://images.unsplash.com/photo-1563170351-be82bc888aa4?w=400&q=80",
-    atributos: { doce: 5, fresco: 6, intenso: 4, noturno: 3, floral: 7, amadeirado: 4, oriental: 5, citrico: 5, sensual: 4, elegante: 7 },
+    imagem: "/assets/perfumes_femininos/noor_al_sabah.webp",
+    atributos: { doce: 3, fresco: 7, intenso: 3, noturno: 2, floral: 6, amadeirado: 3, oriental: 4, citrico: 6, sensual: 3, elegante: 6 },
     descricao: "Luz da manhã — leveza floral radiante."
   },
   {
     id: "f19",
     nome: "Fakhar Rose",
     marca: "Lattafa",
-    imagem: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=400&q=80",
-    atributos: { doce: 5, fresco: 5, intenso: 5, noturno: 4, floral: 8, amadeirado: 4, oriental: 5, citrico: 4, sensual: 5, elegante: 7 },
+    imagem: "/assets/perfumes_femininos/fakhar_rose.jpeg",
+    atributos: { doce: 5, fresco: 4, intenso: 5, noturno: 4, floral: 8, amadeirado: 4, oriental: 5, citrico: 3, sensual: 6, elegante: 7 },
     descricao: "Orgulho em rosa — feminino e confiante."
   },
   {
     id: "f20",
     nome: "Watani",
     marca: "Al Wataniah",
-    imagem: "https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?w=400&q=80",
-    atributos: { doce: 6, fresco: 4, intenso: 6, noturno: 5, floral: 5, amadeirado: 5, oriental: 7, citrico: 3, sensual: 6, elegante: 6 },
+    imagem: "/assets/perfumes_femininos/watani.webp",
+    atributos: { doce: 6, fresco: 3, intenso: 7, noturno: 6, floral: 4, amadeirado: 6, oriental: 8, citrico: 2, sensual: 7, elegante: 6 },
     descricao: "Patriotismo olfativo — tradição e modernidade."
   }
 ];
+
+export const perfumesMasculinos = adicionarNotasPrincipais(perfumesMasculinosBase);
+export const perfumesFemininos = adicionarNotasPrincipais(perfumesFemininosBase);

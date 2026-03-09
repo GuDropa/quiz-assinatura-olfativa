@@ -1,20 +1,18 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { User, Mail, Phone, ArrowRight } from "lucide-react";
+import { User, Phone, ArrowRight } from "lucide-react";
 
 export default function ContactStep({ onSubmit, onSkip }) {
   const [nome, setNome] = useState("");
-  const [email, setEmail] = useState("");
   const [telefone, setTelefone] = useState("");
 
-  const canSubmit = email?.trim().length > 0;
+  const canSubmit = nome?.trim().length > 0 || telefone?.trim().length > 0;
 
   function handleSubmit(e) {
     e.preventDefault();
     if (!canSubmit) return;
     onSubmit({
       nome: nome.trim(),
-      email: email.trim(),
       telefone: telefone.trim(),
     });
   }
@@ -29,10 +27,10 @@ export default function ContactStep({ onSubmit, onSkip }) {
     >
       <div className="text-center mb-8">
         <h2 className="font-serif text-2xl sm:text-3xl font-bold text-graphite mb-2">
-          Antes de começar
+          Receba seu resultado
         </h2>
         <p className="text-slate-blue text-sm sm:text-base">
-          Deixe seu contato para receber seu resultado e ofertas exclusivas.
+          Deixe seu contato para receber ofertas exclusivas.
         </p>
       </div>
 
@@ -61,27 +59,6 @@ export default function ContactStep({ onSubmit, onSkip }) {
             </div>
             <div>
               <label
-                htmlFor="contact-email"
-                className="block text-sm font-medium text-graphite mb-1.5"
-              >
-                Email <span className="text-burgundy">*</span>
-              </label>
-              <div className="relative">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-blue" />
-                <input
-                  id="contact-email"
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="seu@email.com"
-                  required
-                  className="w-full pl-10 pr-4 py-3 rounded-xl border border-graphite/15 bg-offwhite text-graphite placeholder:text-slate-blue/60 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent"
-                  autoComplete="email"
-                />
-              </div>
-            </div>
-            <div>
-              <label
                 htmlFor="contact-telefone"
                 className="block text-sm font-medium text-graphite mb-1.5"
               >
@@ -105,7 +82,7 @@ export default function ContactStep({ onSubmit, onSkip }) {
               disabled={!canSubmit}
               className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl font-semibold text-white bg-linear-to-r from-burgundy to-burgundy-light hover:opacity-95 disabled:cursor-not-allowed transition-opacity cursor-pointer"
             >
-              Iniciar quiz
+              Ver meu resultado
               <ArrowRight className="w-4 h-4" />
             </button>
           </form>
